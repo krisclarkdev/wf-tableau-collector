@@ -30,11 +30,21 @@ This is still very much a work in progress proceed at your own risk
 * Update these with your settings from Wavefront and Tableau
 
 ```shell
-git clone https://...
+git clone https://github.com/krisclarkdev/wf-tableau-collector
 cd wf-tableau-collector
 npm install
 node ./index.js
 curl http://localhost:3000/workbook/dataByID/TABLEAUSITEID/TABLEAUWORKBOOKID
 ```
 
+* Alternatively you can build a binary and execute it from the binaries directory for the appropriate platform
+
 # DO NOT CHANGE ANYTHING IN THE CONFIG FILES WITH THE WORD DUMMY
+
+### How to build
+
+```shell
+git clone https://github.com/krisclarkdev/wf-tableau-collector
+cd wf-tableau-collector
+npm run build
+```

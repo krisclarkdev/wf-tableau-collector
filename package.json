@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "pkg ./index.js --out-path ./binaries/",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kristopher Clark",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "pkg": "^5.5.2"
   },
   "dependencies": {
     "properties-reader": "2.2.0",
@@ -14,8 +21,5 @@
     "csvtojson": "^2.0.10",
     "flatted": "^3.2.5",
     "wavefrontmetrics": "^1.1.4"
-  },
-  "keywords": [],
-  "author": "Kristopher Clark",
-  "license": "Apache-2.0"
+  }
 }
