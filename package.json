@@ -1,0 +1,21 @@
+{
+  "name": "wf-tableau-collector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "properties-reader": "2.2.0",
+    "axios": "0.26.1",
+    "xml2js": "^0.4.23",
+    "express": "^4.17.3",
+    "csvtojson": "^2.0.10",
+    "flatted": "^3.2.5",
+    "wavefrontmetrics": "^1.1.4"
+  },
+  "keywords": [],
+  "author": "Kristopher Clark",
+  "license": "Apache-2.0"
+}
