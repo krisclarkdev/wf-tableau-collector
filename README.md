@@ -6,6 +6,7 @@ to be transformed into metrics and sent to [Wavefront](https://tanzu.vmware.com/
 * [Introduction](#introduction)
 * [Warning](#warning)
 * [Environment](#enviornment-tested-against)
+* [Properties](#properties)
 * [How to run](#how-to-run)
 * [How to build](#how-to-build)
 
@@ -25,6 +26,41 @@ This is still very much a work in progress proceed at your own risk
 * NodeJS
   * 14.15.0
   * Provided by WebStorm IDE
+
+# Properties
+
+## tableau.properties
+
+| Syntax                   | Description                        | Example                                   | Needs to be changed | Required |
+|--------------------------|------------------------------------|-------------------------------------------|---------------------|----------|
+| Username                 | Tableau Username                   | nonadmin                                  | &#9745;               | &#9745;      |
+| Password                 | Tableau Password                   | password                                  | &#9745;               | &#9745;    |
+| api_version              | Tableau REST Version               | 3.13                                      | &#9745;               | &#9745;    |
+| contentUrl               | STUFF                              | Org                                       | &#9745;               | &#9745;    |
+| base_url                 | Tableau API URL                    | https://yoursite.tableau.com              | &#9745;               | &#9745;    |
+| endpoint.auth            | Tableau authentication endpoint    | /auth/signin                              | &#9744;               | &#9745;    |
+| endpoint.sites           | Tableau sites endpoint             | /sites                                    | &#9744;               | &#9745;    |
+| endpoint.views           | Tableau views endpoint             | /sites/dummysite/views                    | &#9744;               | &#9745;    |
+| endpoint.views.data      | Tableau views data endpoint        | /sites/dummysite/views/dummyview/data     | &#9744;               | &#9745;    |
+| endpoint.workbooks.views | Tableau workbook views endpoint    | /sites/dummysite/workbooks/dummyworkbook  | &#9744;               | &#9745;    |
+
+
+## tableauLogin.xml
+
+| Syntax | Description         | Do not change  |
+| --- |------------------------|----------------|
+| name | Tableau username      | &#9745;        |
+| password | Tableau password  | &#9745;        |
+| contentUrl   | Tableau URL   | &#9745;        |
+
+## wavefront.properties
+
+| Syntax           | Description                     | Example                   | Required   | Should be changed | Documentation                                                 |
+|------------------|---------------------------------|---------------------------|------------|-------------------|---------------------------------------------------------------|
+| wavefront.token  | Your Wavefront REST Token       |                           | &#9745;    | &#9745;           | [here](https://docs.wavefront.com/wavefront_api.html)         |
+| wavefront.url    | Your Wavefront URL              | https://try.wavefront.com | &#9745;    | &#9745;           |                                                               |
+| metric.source    | A source name for these metrics | tableauCollectorMetrics   | &#9745;    | &#9744;           | [here](https://docs.wavefront.com/sources_managing.html)      |
+| metric.prefix    | A metric name prefix            | tableau.view.data         | &#9745;    | &#9744;           | [here](https://docs.wavefront.com/wavefront_data_format.html) |
 
 ## How to run
 
@@ -51,8 +87,6 @@ curl http://localhost:3000/workbook/dataByID/TABLEAUSITEID/TABLEAUWORKBOOKID
       * [wavefront.properties](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/wavefront.properties)
       * [tableauLogin.xml](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/tableauLogin.xml)
     * WF_TABLEAU_COLLECTOR_LOG_LOCATION=/pathTo/logLocation/
-
-# DO NOT CHANGE ANYTHING IN THE CONFIG FILES WITH THE WORD DUMMY
 
 ### How to build
 
