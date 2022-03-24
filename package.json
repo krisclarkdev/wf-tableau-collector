@@ -2,9 +2,9 @@
   "name": "wf-tableau-collector",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "tableaucollector.js",
   "scripts": {
-    "build": "pkg ./index.js --out-path ./binaries/ --output wf-tableau-collector",
+    "build": "pkg tableaucollector.js --out-path ./binaries/ --output wf-tableau-collector",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -39,7 +39,7 @@ This is still very much a work in progress proceed at your own risk
 git clone https://github.com/krisclarkdev/wf-tableau-collector
 cd wf-tableau-collector
 npm install
-node ./index.js
+node ./tableaucollector.js
 curl http://localhost:3000/workbook/dataByID/TABLEAUSITEID/TABLEAUWORKBOOKID
 ```
 
