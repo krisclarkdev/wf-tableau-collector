@@ -1,13 +1,13 @@
-const axios = require("axios");
 const MyLogger = require("./MyLogger");
 
 class HttpReqs extends MyLogger {
+    axios = require("axios");
     constructor(className) {
         super(className);
     }
 
     doGet(url, headers, body) {
-        return axios({
+        return this.axios({
             method: "get",
             url: url,
             headers: headers
@@ -15,7 +15,7 @@ class HttpReqs extends MyLogger {
     }
 
     doPost(url, headers, body) {
-        return axios({
+        return this.axios({
             method: "post",
             url: url,
             headers: headers,
