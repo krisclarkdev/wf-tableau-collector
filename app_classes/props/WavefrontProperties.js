@@ -1,16 +1,16 @@
 'use strict';
 
-const PropertiesReader = require("properties-reader");
-const properties = PropertiesReader(process.env.TABLEAU_COLLECTOR_WF_PROPS || "config/wavefront.properties");
-
 class WavefrontProperties {
+    PropertiesReader = require("properties-reader");
+
     constructor(){
+        this.properties = this.PropertiesReader(process.env.TABLEAU_COLLECTOR_WF_PROPS || "config/wavefront.properties");
     }
 
-    get token(){return properties.get("wavefront.token")}
-    get url(){return properties.get("wavefront.url")}
-    get source(){return properties.get("metric.source")}
-    get prefix(){return properties.get("metric.prefix")}
+    get token(){return this.properties.get("wavefront.token")}
+    get url(){return this.properties.get("wavefront.url")}
+    get source(){return this.properties.get("metric.source")}
+    get prefix(){return this.properties.get("metric.prefix")}
 
     set token(token){}
     set url(url){}
