@@ -4,9 +4,20 @@ const csvtojsonV2 = require("csvtojson");
 const AppProperties = require("../props/AppProperties");
 const XMLParser = require("../utils/XMLParser");
 const HttpReqs = require("../utils/HttpReqs");
+const winston = require("winston");
 
 let appProps = new AppProperties();
 let parser   = new XMLParser();
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    defaultMeta: { service: 'wf-tableau-collector-Tableau' },
+    transports: [
+        new winston.transports.File({ filename: process.env.WF_TABLEAU_COLLECTOR_ERROR_LOG    || 'error.log', level: 'error' }),
+        new winston.transports.File({ filename: process.env.WF_TABLEAU_COLLECTOR_COMBINED_LOG || 'combined.log' }),
+    ],
+});
 
 class Tableau extends HttpReqs {
     constructor(){
@@ -79,7 +90,7 @@ class Tableau extends HttpReqs {
         });
     }
 
-    getData(token, siteID, viewID, contentURL) {
+    getData(token, siteID, viewID) {
         return new Promise((resolve, reject)=>{
             let dataEndpoint = appProps.endpointViewsData;
             dataEndpoint = dataEndpoint.replace(/dummysite/g, siteID);
@@ -102,7 +113,7 @@ class Tableau extends HttpReqs {
                 reject(err);
             });
         }).catch((dataFetchErr)=>{
-            console.error(dataFetchErr);
+            logger.error(dataFetchErr);
         });
     }
 
@@ -126,7 +137,7 @@ class Tableau extends HttpReqs {
                 reject(err);
             });
         }).catch((workbookFetchErr)=>{
-            console.error(workbookFetchErr);
+            logger.error(workbookFetchErr);
         });
     }
 
@@ -155,14 +166,13 @@ class Tableau extends HttpReqs {
                 });
             });
         }).catch((wbViewsFetchError)=>{
-            console.error(wbViewsFetchError);
+            logger.error(wbViewsFetchError);
         })
 
 
         let workbookData = new Promise((resolve3,reject3)=>{
             let allViewDataArray = [];
             Promise.all([loginToken, workbookViews]).then((values) => {
-                //console.log('values');
                 values[1].forEach((view=>{
                     allViewDataArray.push(this.getData(values[0], siteID,view.viewID, view.contentUrl));
                 }))
@@ -176,6 +186,8 @@ class Tableau extends HttpReqs {
             workbookData.then((promiseArray)=>{
                 Promise.all(promiseArray).then((allData)=>{
                     resolve4(allData);
+                }).catch((workbookDataError)=>{
+                    logger.error(workbookDataError);
                 })
             })
         });
@@ -205,7 +217,7 @@ class Tableau extends HttpReqs {
                     convertedDataResolve(allDataRows);
                 });
             }).catch((allConvertedDataError)=>{
-                console.error(allConvertedDataError);
+                logger.error(allConvertedDataError);
             })
         });
     }

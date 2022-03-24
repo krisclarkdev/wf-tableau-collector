@@ -1,5 +1,6 @@
 'use strict';
 
+const winston   = require('winston');
 const express   = require('express');
 const Tableau   = require("./app_classes/tableau/Tableau");
 const Wavefront = require("./app_classes/wavefront/Wavefront");
@@ -8,6 +9,16 @@ let   wavefront = new Wavefront();
 
 const app       = express();
 const port      = process.env.TABLEAU_COLLECTOR_PORT || 3000;
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    defaultMeta: { service: 'wf-tableau-collector-index' },
+    transports: [
+        new winston.transports.File({ filename: process.env.WF_TABLEAU_COLLECTOR_ERROR_LOG    || 'error.log', level: 'error' }),
+        new winston.transports.File({ filename: process.env.WF_TABLEAU_COLLECTOR_COMBINED_LOG || 'combined.log' }),
+    ],
+});
 
 wavefront.startReporter();
 
@@ -24,8 +35,8 @@ app.get('/workbook/dataByID/:siteid/:workbookid', (req, res) => {
 
         res.send(data);
     }).catch((err)=>{
-        console.error(err);
+        logger.error(err);
     })
 });
 
-app.listen(port, () => console.log(`Hello world app listening on port ${port}!`))
+app.listen(port, () => logger.info(`Hello world app listening on port ${port}!`))
