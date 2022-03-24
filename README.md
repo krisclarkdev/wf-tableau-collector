@@ -39,7 +39,7 @@ This is still very much a work in progress proceed at your own risk
 git clone https://github.com/krisclarkdev/wf-tableau-collector
 cd wf-tableau-collector
 npm install
-node ./tableaucollector.js
+npm run start
 curl http://localhost:3000/workbook/dataByID/TABLEAUSITEID/TABLEAUWORKBOOKID
 ```
 
@@ -59,5 +59,6 @@ curl http://localhost:3000/workbook/dataByID/TABLEAUSITEID/TABLEAUWORKBOOKID
 ```shell
 git clone https://github.com/krisclarkdev/wf-tableau-collector
 cd wf-tableau-collector
-npm run build
+npm run build-prod
+npm run build-prod-arm
 ```
