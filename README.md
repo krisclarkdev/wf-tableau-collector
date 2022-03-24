@@ -1,5 +1,5 @@
 ## Introduction
-wf-tableau-collector is a simple NodeJS app who's purpose is to collect data from all views in a Tableau workbook for
+wf-tableau-collector is a simple NodeJS app whose purpose is to collect data from all views in a Tableau workbook
 to be transformed into metrics and sent to Wavefront via direct reporter.
 
 ## TOC
