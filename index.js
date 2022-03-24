@@ -7,7 +7,7 @@ const Wavefront = require("./app_classes/wavefront/Wavefront");
 let   wavefront = new Wavefront();
 
 const app       = express();
-const port      = 3000;
+const port      = process.env.TABLEAU_COLLECTOR_PORT || 3000;
 
 wavefront.startReporter();
 

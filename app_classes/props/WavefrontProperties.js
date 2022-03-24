@@ -1,7 +1,7 @@
 'use strict';
 
 const PropertiesReader = require("properties-reader");
-const properties = PropertiesReader("config/wavefront.properties");
+const properties = PropertiesReader(process.env.TABLEAU_COLLECTOR_WF_PROPS || "config/wavefront.properties");
 
 class WavefrontProperties {
     constructor(){

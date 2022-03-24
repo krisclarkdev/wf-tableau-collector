@@ -7,7 +7,7 @@ const PropertiesReader = require("properties-reader");
 class TableauProperties extends WavefrontProperties {
     constructor(){
         super();
-        this.tProperties = PropertiesReader("config/tableau.properties");
+        this.tProperties = PropertiesReader(process.env.TABLEAU_COLLECTOR_TABLEAU_PROPS || "config/tableau.properties");
     }
 
     get username(){return this.tProperties.get("username")};
@@ -15,7 +15,7 @@ class TableauProperties extends WavefrontProperties {
     get baseURL(){return this.tProperties.get("base_url")};
     get contentURL(){return this.tProperties.get("contentUrl")};
     get authXML(){
-        let data = fs.readFileSync("config/tableauLogin.xml").toString();
+        let data = fs.readFileSync(process.env.TABLEAU_COLLECTOR_AUT_XML || "config/tableauLogin.xml").toString();
         data = data.replace(/dummyuserdonottouch/g, this.tProperties.get("username"));
         data = data.replace(/dummypassdonottouch/g, this.tProperties.get("password"));
         data = data.replace(/dummyContentUrldonottouch/g, this.tProperties.get("contentUrl"));
