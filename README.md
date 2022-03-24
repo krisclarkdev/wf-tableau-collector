@@ -101,7 +101,7 @@ npm run build-prod-arm
 
 ```shell
 git clone https://github.com/krisclarkdev/wf-tableau-collector
-cd wf-tableau-collector
+cd wf-tableau-collector/installers/deb
 dpkg-deb --build --root-owner-group WFTableauCollector-0.1.0_x64
 ```
 
