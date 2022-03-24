@@ -1,6 +1,6 @@
-const winston = require("winston");
-
 class MyLogger {
+    winston = require("winston");
+
     constructor(className) {
         let location = "";
         if(process.env.WF_TABLEAU_COLLECTOR_LOG_LOCATION){
@@ -9,13 +9,13 @@ class MyLogger {
             location = './';
         }
 
-        this.myLogger = winston.createLogger({
+        this.myLogger = this.winston.createLogger({
             level: 'info',
-            format: winston.format.json(),
+            format: this.winston.format.json(),
             defaultMeta: { service: className },
             transports: [
-                new winston.transports.File({ filename: location + 'error.log', level: 'error' }),
-                new winston.transports.File({ filename: location + 'error.log'}),
+                new this.winston.transports.File({ filename: location + 'error.log', level: 'error' }),
+                new this.winston.transports.File({ filename: location + 'error.log'}),
             ],
         })
 
