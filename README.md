@@ -8,6 +8,7 @@ to be transformed into metrics and sent to [Wavefront](https://tanzu.vmware.com/
 * [Properties](#properties)
 * [How to run](#how-to-run)
 * [How to build](#how-to-build)
+* [Build deb installer (not yet tested)](#build-the-deb-package)
 
 # TODO's
 * Need to decide on what data that is recieved by all of the views should be included and then send it to Wavefront at [line #27 of WFTableauCollector.js](https://github.com/krisclarkdev/wf-tableau-collector/blob/02f1535087e473f55d83f6ed7ba24ffdcdcc379c/app_classes/WfTableauCollector.js#L27)
