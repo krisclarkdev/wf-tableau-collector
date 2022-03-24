@@ -46,9 +46,10 @@ curl http://localhost:3000/workbook/dataByID/TABLEAUSITEID/TABLEAUWORKBOOKID
 * Alternatively you can build a binary and execute it from the binaries directory for the appropriate platform
   * The following environment variables must be set prior to running the standalone binary
     * TABLEAU_COLLECTOR_PORT=SOMEPORT
-    * TABLEAU_COLLECTOR_TABLEAU_PROPS=/pathTo/theConfig/[tableau.properties](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/tableau.properties)
-    * TABLEAU_COLLECTOR_WF_PROPS=/pathTo/theConfig/[wavefront.properties](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/wavefront.properties)
-    * TABLEAU_COLLECTOR_AUT_XML=/pathTo/theConfig/[tableauLogin.xml](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/tableauLogin.xml)
+    * TABLEAU_COLLECTOR_CONFIG=/pathTo/all/configFiles
+      * [tableau.properties](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/tableau.properties)
+      * [wavefront.properties](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/wavefront.properties)
+      * [tableauLogin.xml](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/tableauLogin.xml)
     * WF_TABLEAU_COLLECTOR_LOG_LOCATION=/pathTo/logLocation/
 
 # DO NOT CHANGE ANYTHING IN THE CONFIG FILES WITH THE WORD DUMMY

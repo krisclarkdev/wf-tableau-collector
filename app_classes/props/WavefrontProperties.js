@@ -4,7 +4,13 @@ class WavefrontProperties {
     PropertiesReader = require("properties-reader");
 
     constructor(){
-        this.properties = this.PropertiesReader(process.env.TABLEAU_COLLECTOR_WF_PROPS || "config/wavefront.properties");
+        if(process.env.TABLEAU_COLLECTOR_CONFIG){
+            this.location = process.env.TABLEAU_COLLECTOR_CONFIG + "/wavefront.properties"
+        }else{
+            this.location = "config/wavefront.properties"
+        }
+
+        this.properties = this.PropertiesReader(this.location);
     }
 
     get token(){return this.properties.get("wavefront.token")}

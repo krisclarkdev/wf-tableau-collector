@@ -8,7 +8,20 @@ class TableauProperties extends WavefrontProperties {
 
     constructor(){
         super();
-        this.tProperties = this.PropertiesReader(process.env.TABLEAU_COLLECTOR_TABLEAU_PROPS || "config/tableau.properties");
+
+        if(process.env.TABLEAU_COLLECTOR_CONFIG){
+            this.location = process.env.TABLEAU_COLLECTOR_CONFIG + "/tableau.properties"
+        }else{
+            this.location = "config/tableau.properties"
+        }
+
+        if(process.env.TABLEAU_COLLECTOR_AUT_XML){
+            this.xmlLocation = process.env.TABLEAU_COLLECTOR_CONFIG + "/tableauLogin.xml"
+        }else{
+            this.xmlLocation = "config/tableauLogin.xml"
+        }
+
+        this.tProperties = this.PropertiesReader(this.location);
     }
 
     get username(){return this.tProperties.get("username")};
@@ -16,7 +29,7 @@ class TableauProperties extends WavefrontProperties {
     get baseURL(){return this.tProperties.get("base_url")};
     get contentURL(){return this.tProperties.get("contentUrl")};
     get authXML(){
-        let data = this.fs.readFileSync(process.env.TABLEAU_COLLECTOR_AUT_XML || "config/tableauLogin.xml").toString();
+        let data = this.fs.readFileSync(this.xmlLocation).toString();
         data = data.replace(/dummyuserdonottouch/g, this.tProperties.get("username"));
         data = data.replace(/dummypassdonottouch/g, this.tProperties.get("password"));
         data = data.replace(/dummyContentUrldonottouch/g, this.tProperties.get("contentUrl"));
