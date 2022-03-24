@@ -1,17 +1,18 @@
 'use strict';
 
-const express   = require('express');
-const Tableau   = require("./tableau/Tableau");
-const Wavefront = require("./wavefront/Wavefront");
 const MyLogger  = require("./utils/MyLogger");
 
 class WfTableauCollector extends MyLogger {
+    express   = require('express');
+    Tableau   = require("./tableau/Tableau");
+    Wavefront = require("./wavefront/Wavefront");
+
     constructor() {
         super('wf-tableau-collector')
 
-        this.wavefront = new Wavefront();
-        this.tableau   = new Tableau();
-        this.app       = express();
+        this.wavefront = new this.Wavefront();
+        this.tableau   = new this.Tableau();
+        this.app       = this.express();
         this.port      = process.env.TABLEAU_COLLECTOR_PORT || 3000;
     }
 
