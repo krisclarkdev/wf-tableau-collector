@@ -5,19 +5,12 @@ const AppProperties = require("../props/AppProperties");
 const XMLParser = require("../utils/XMLParser");
 const HttpReqs = require("../utils/HttpReqs");
 const winston = require("winston");
+const MyLogger = require("../utils/MyLogger");
 
 let appProps = new AppProperties();
 let parser   = new XMLParser();
 
-const logger = winston.createLogger({
-    level: 'info',
-    format: winston.format.json(),
-    defaultMeta: { service: 'wf-tableau-collector-Tableau' },
-    transports: [
-        new winston.transports.File({ filename: process.env.WF_TABLEAU_COLLECTOR_ERROR_LOG    || 'error.log', level: 'error' }),
-        new winston.transports.File({ filename: process.env.WF_TABLEAU_COLLECTOR_COMBINED_LOG || 'combined.log' }),
-    ],
-});
+let logger = new MyLogger('wf-tableau-collector-Tableau');
 
 class Tableau extends HttpReqs {
     constructor(){

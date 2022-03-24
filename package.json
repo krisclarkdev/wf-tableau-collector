@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pkg ./index.js --out-path ./binaries/",
+    "build": "pkg ./index.js --out-path ./binaries/ --output wf-tableau-collector",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
