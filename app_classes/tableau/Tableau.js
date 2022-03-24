@@ -1,28 +1,28 @@
 'use strict';
 
-const csvtojsonV2 = require("csvtojson");
-const AppProperties = require("../props/AppProperties");
-const XMLParser = require("../utils/XMLParser");
 const HttpReqs = require("../utils/HttpReqs");
 
-let appProps = new AppProperties();
-let parser   = new XMLParser();
-
 class Tableau extends HttpReqs {
+    csvtojsonV2 = require("csvtojson");
+    XMLParser = require("../utils/XMLParser");
+    AppProperties = require("../props/AppProperties");
+
     constructor(){
         super('wf-tableau-collector-Tableau');
+        this.appProps = new this.AppProperties();
+        this.parser   = new this.XMLParser();
     }
 
     login() {
-        let authResponse = super.doPost(appProps.baseURL + "/" +
-            appProps.version +
-            appProps.endpointAuth,
+        let authResponse = super.doPost(this.appProps.baseURL + "/" +
+            this.appProps.version +
+            this.appProps.endpointAuth,
             null,
-            appProps.authXML);
+            this.appProps.authXML);
 
         return new Promise((resolve, reject)=>{
             authResponse.then((auth)=>{
-                parser.parseXML(auth.data).then((cleanXML)=>{
+                this.parser.parseXML(auth.data).then((cleanXML)=>{
                     resolve(cleanXML.tsResponse.credentials[0]['$'].token);
                 }).catch(xmlErr=>{
                     reject(xmlErr);
@@ -45,9 +45,9 @@ class Tableau extends HttpReqs {
 
     getSites(token) {
         return new Promise((resolve, reject)=>{
-            let sitesResponse = super.doGet(appProps.baseURL + "/" +
-                appProps.version +
-                appProps.endpointSites,
+            let sitesResponse = super.doGet(this.appProps.baseURL + "/" +
+                this.appProps.version +
+                this.appProps.endpointSites,
                 {
                     "X-Tableau-Auth": token
                 },
@@ -64,8 +64,8 @@ class Tableau extends HttpReqs {
     getViews(token, siteID) {
         return new Promise((resolve, reject)=>{
             let viewResponse = super.doGet(appProps.baseURL + "/" +
-                appProps.version +
-                appProps.endpointViews.replace(/dummysite/g, siteID), //findme
+                this.appProps.version +
+                this.appProps.endpointViews.replace(/dummysite/g, siteID), //findme
                 {
                     "X-Tableau-Auth": token
                 },
@@ -81,12 +81,12 @@ class Tableau extends HttpReqs {
 
     getData(token, siteID, viewID) {
         return new Promise((resolve, reject)=>{
-            let dataEndpoint = appProps.endpointViewsData;
+            let dataEndpoint = this.appProps.endpointViewsData;
             dataEndpoint = dataEndpoint.replace(/dummysite/g, siteID);
             dataEndpoint = dataEndpoint.replace(/dummyview/g, viewID);
 
-            let dataResponse = super.doGet(appProps.baseURL + "/" +
-                appProps.version +
+            let dataResponse = super.doGet(this.appProps.baseURL + "/" +
+                this.appProps.version +
                 dataEndpoint,
                 {
                     "Accept": "application/json",
@@ -96,7 +96,7 @@ class Tableau extends HttpReqs {
 
             dataResponse.then(viewData=>{
                 resolve({
-                    view: appProps.contentURL,
+                    view: this.appProps.contentURL,
                     data: viewData}); // check this for correctness
             }).catch(err=>{
                 reject(err);
@@ -108,12 +108,12 @@ class Tableau extends HttpReqs {
 
     getWorkbookViews(token, siteID, workbookID) {
         return new Promise((resolve, reject)=>{
-            let workbookEndpoint = appProps.endpointWorkbookViews;
+            let workbookEndpoint = this.appProps.endpointWorkbookViews;
             workbookEndpoint = workbookEndpoint.replace(/dummysite/g, siteID);
             workbookEndpoint = workbookEndpoint.replace(/dummyworkbook/g, workbookID);
 
-            let workbookResponse = super.doGet(appProps.baseURL + "/" +
-                appProps.version +
+            let workbookResponse = super.doGet(this.appProps.baseURL + "/" +
+                this.appProps.version +
                 workbookEndpoint,
                 {
                     "X-Tableau-Auth": token
@@ -186,7 +186,7 @@ class Tableau extends HttpReqs {
                 let dataRows = [];
                 allData.forEach(current=>{
                     let currentRow = new Promise((currentRowResolve,currentRowReject)=>{
-                        csvtojsonV2().fromString(current.data.data).then((convertedCVS)=>{
+                        this.csvtojsonV2().fromString(current.data.data).then((convertedCVS)=>{
                             convertedCVS['view'] = current.view;
 
                             let finished = {
