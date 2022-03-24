@@ -10,7 +10,8 @@ to be transformed into metrics and sent to [Wavefront](https://tanzu.vmware.com/
 * [How to build](#how-to-build)
 
 # TODO's
-Need to decide on what data that is recieved by all of the views should be included and then send it to Wavefront at [line #27 of WFTableauCollector.js](https://github.com/krisclarkdev/wf-tableau-collector/blob/02f1535087e473f55d83f6ed7ba24ffdcdcc379c/app_classes/WfTableauCollector.js#L27)
+* Need to decide on what data that is recieved by all of the views should be included and then send it to Wavefront at [line #27 of WFTableauCollector.js](https://github.com/krisclarkdev/wf-tableau-collector/blob/02f1535087e473f55d83f6ed7ba24ffdcdcc379c/app_classes/WfTableauCollector.js#L27)
+* Test deb installer
 
 # Enviornment tested against
 * MacBook Pro
@@ -95,3 +96,12 @@ cd wf-tableau-collector
 npm run build-prod
 npm run build-prod-arm
 ```
+# Build the deb package
+
+```shell
+git clone https://github.com/krisclarkdev/wf-tableau-collector
+cd wf-tableau-collector
+dpkg-deb --build --root-owner-group WFTableauCollector-0.1.0_x64
+```
+
+This has been built but not verified and tested

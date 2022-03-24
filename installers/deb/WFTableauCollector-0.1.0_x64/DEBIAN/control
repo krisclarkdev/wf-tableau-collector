@@ -1,0 +1,5 @@
+Package: wftableaucollector
+Version: 0.1.0
+Architecture: x64
+Maintainer: Kristopher Clark <krisclarkdev@krisbox.org>
+Description: Collects view data from Tableau and sends it to Wavefront
