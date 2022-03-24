@@ -3,14 +3,14 @@ wf-tableau-collector is a simple NodeJS app whose purpose is to collect data fro
 to be transformed into metrics and sent to [Wavefront](https://tanzu.vmware.com/observability) - an enterprise observability platform - via direct reporter.
 
 * [Introduction](#introduction)
-* [Warning](#warning)
+* [TODO](#todos)
 * [Environment](#enviornment-tested-against)
 * [Properties](#properties)
 * [How to run](#how-to-run)
 * [How to build](#how-to-build)
 
-# Warning
-This is still very much a work in progress proceed at your own risk
+# TODO's
+Need to decide on what data that is recieved by all of the views should be included and then send it to Wavefront at [line #27 of WFTableauCollector.js](https://github.com/krisclarkdev/wf-tableau-collector/blob/02f1535087e473f55d83f6ed7ba24ffdcdcc379c/app_classes/WfTableauCollector.js#L27)
 
 # Enviornment tested against
 * MacBook Pro
