@@ -1,6 +1,6 @@
 ## Introduction
 wf-tableau-collector is a simple NodeJS app whose purpose is to collect data from all views in a Tableau workbook
-to be transformed into metrics and sent to Wavefront via direct reporter.
+to be transformed into metrics and sent to [Wavefront](https://tanzu.vmware.com/observability) - an enterprise observability platform - via direct reporter.
 
 ## TOC
 * [Introduction](#introduction)
@@ -33,6 +33,7 @@ This is still very much a work in progress proceed at your own risk
   * tableauLogin.xml
   * wavefront.properties
 * Update these with your settings from Wavefront and Tableau
+  * A wavefront token can be retireved or created from the service accounts page located at https://YOURWAVEFRONTURL/account/serviceaccounts
 
 ```shell
 git clone https://github.com/krisclarkdev/wf-tableau-collector
