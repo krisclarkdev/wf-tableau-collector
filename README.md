@@ -49,8 +49,7 @@ curl http://localhost:3000/workbook/dataByID/TABLEAUSITEID/TABLEAUWORKBOOKID
     * TABLEAU_COLLECTOR_TABLEAU_PROPS=/pathTo/theConfig/[tableau.properties](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/tableau.properties)
     * TABLEAU_COLLECTOR_WF_PROPS=/pathTo/theConfig/[wavefront.properties](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/wavefront.properties)
     * TABLEAU_COLLECTOR_AUT_XML=/pathTo/theConfig/[tableauLogin.xml](https://raw.githubusercontent.com/krisclarkdev/wf-tableau-collector/master/config/tableauLogin.xml)
-    * WF_TABLEAU_COLLECTOR_COMBINED_LOG=/path/to/combined.log
-    * WF_TABLEAU_COLLECTOR_ERROR_LOG=/path/to/error.log
+    * WF_TABLEAU_COLLECTOR_LOG_LOCATION=/pathTo/logLocation/
 
 # DO NOT CHANGE ANYTHING IN THE CONFIG FILES WITH THE WORD DUMMY
 
