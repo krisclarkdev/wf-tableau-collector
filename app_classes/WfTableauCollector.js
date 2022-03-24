@@ -5,11 +5,6 @@ const Tableau   = require("./tableau/Tableau");
 const Wavefront = require("./wavefront/Wavefront");
 const MyLogger  = require("./utils/MyLogger");
 
-//let   wavefront = new Wavefront();
-//let tableau = new Tableau();
-
-//let logger = new MyLogger('wf-tableau-collector');
-
 class WfTableauCollector extends MyLogger {
     constructor() {
         super('wf-tableau-collector')

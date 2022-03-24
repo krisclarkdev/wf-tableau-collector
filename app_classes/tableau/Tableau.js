@@ -4,17 +4,13 @@ const csvtojsonV2 = require("csvtojson");
 const AppProperties = require("../props/AppProperties");
 const XMLParser = require("../utils/XMLParser");
 const HttpReqs = require("../utils/HttpReqs");
-const winston = require("winston");
-const MyLogger = require("../utils/MyLogger");
 
 let appProps = new AppProperties();
 let parser   = new XMLParser();
 
-let logger = new MyLogger('wf-tableau-collector-Tableau');
-
 class Tableau extends HttpReqs {
     constructor(){
-        super();
+        super('wf-tableau-collector-Tableau');
     }
 
     login() {
@@ -106,7 +102,7 @@ class Tableau extends HttpReqs {
                 reject(err);
             });
         }).catch((dataFetchErr)=>{
-            logger.error(dataFetchErr);
+            super.logger.error(dataFetchErr);
         });
     }
 
@@ -130,7 +126,7 @@ class Tableau extends HttpReqs {
                 reject(err);
             });
         }).catch((workbookFetchErr)=>{
-            logger.error(workbookFetchErr);
+            super.logger.error(workbookFetchErr);
         });
     }
 
@@ -159,7 +155,7 @@ class Tableau extends HttpReqs {
                 });
             });
         }).catch((wbViewsFetchError)=>{
-            logger.error(wbViewsFetchError);
+            super.logger.error(wbViewsFetchError);
         })
 
 
@@ -180,7 +176,7 @@ class Tableau extends HttpReqs {
                 Promise.all(promiseArray).then((allData)=>{
                     resolve4(allData);
                 }).catch((workbookDataError)=>{
-                    logger.error(workbookDataError);
+                    super.logger.error(workbookDataError);
                 })
             })
         });
@@ -210,7 +206,7 @@ class Tableau extends HttpReqs {
                     convertedDataResolve(allDataRows);
                 });
             }).catch((allConvertedDataError)=>{
-                logger.error(allConvertedDataError);
+                super.logger.error(allConvertedDataError);
             })
         });
     }

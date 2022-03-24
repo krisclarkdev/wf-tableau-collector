@@ -6,7 +6,7 @@ class MyLogger {
         if(process.env.WF_TABLEAU_COLLECTOR_LOG_LOCATION){
             location = process.env.WF_TABLEAU_COLLECTOR_LOG_LOCATION;
         }else{
-            location = '';
+            location = './';
         }
 
         this.myLogger = winston.createLogger({
@@ -14,8 +14,8 @@ class MyLogger {
             format: winston.format.json(),
             defaultMeta: { service: className },
             transports: [
-                new winston.transports.File({ filename: location + 'error.log'    || 'error.log', level: 'error' }),
-                new winston.transports.File({ filename: location + 'error.log' || 'combined.log' }),
+                new winston.transports.File({ filename: location + 'error.log', level: 'error' }),
+                new winston.transports.File({ filename: location + 'error.log'}),
             ],
         })
 
