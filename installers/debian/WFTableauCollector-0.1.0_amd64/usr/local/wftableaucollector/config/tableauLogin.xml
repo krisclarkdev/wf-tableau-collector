@@ -1,0 +1,5 @@
+<tsRequest>
+    <credentials name="dummyuserdonottouch" password="dummypassdonottouch" >
+        <site contentUrl="dummyContentUrldonottouch" />
+    </credentials>
+</tsRequest>

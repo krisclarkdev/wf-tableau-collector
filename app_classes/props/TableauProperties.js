@@ -15,7 +15,7 @@ class TableauProperties extends WavefrontProperties {
             this.location = "config/tableau.properties"
         }
 
-        if(process.env.TABLEAU_COLLECTOR_AUT_XML){
+        if(process.env.TABLEAU_COLLECTOR_CONFIG){
             this.xmlLocation = process.env.TABLEAU_COLLECTOR_CONFIG + "/tableauLogin.xml"
         }else{
             this.xmlLocation = "config/tableauLogin.xml"

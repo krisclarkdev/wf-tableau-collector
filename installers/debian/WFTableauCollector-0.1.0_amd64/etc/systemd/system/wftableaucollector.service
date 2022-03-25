@@ -1,0 +1,14 @@
+[Unit]
+Description=wftableaucollector - collects data from all views in a given workbook with Tableau REST API and publishes them to Tanzu Observability
+Documentation=https://github.com/krisclarkdev/wf-tableau-collector
+After=network.target
+
+[Service]
+Environment="NODE_PORT=3000"
+Environment="TABLEAU_COLLECTOR_CONFIG=/usr/local/wftableaucollector/config"
+Type=simple
+ExecStart=/usr/local/bin/wf-tableau-collector
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
