@@ -102,7 +102,7 @@ npm run build-prod-arm
 ```shell
 git clone https://github.com/krisclarkdev/wf-tableau-collector
 cd wf-tableau-collector/installers/deb
-dpkg-deb --build --root-owner-group WFTableauCollector-0.1.0_x64
+dpkg-deb --build --root-owner-group WFTableauCollector-0.1.0_amd64
 ```
 
-This has been built but not verified and tested
+This has been built and verified to be working on Ubuntu Server 21.10 on a VirtualBox VM
