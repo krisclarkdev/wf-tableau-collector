@@ -32,7 +32,7 @@ to be transformed into metrics and sent to [Wavefront](https://tanzu.vmware.com/
 
 ## tableau.properties
 
-| Syntax                   | Description                        | Example                                   | Needs to be changed | Required |
+| Property                 | Description                        | Example                                   | Needs to be changed | Required |
 |--------------------------|------------------------------------|-------------------------------------------|---------------------|----------|
 | Username                 | Tableau Username                   | nonadmin                                  | ✅               | ✅      |
 | Password                 | Tableau Password                   | password                                  | ✅               | ✅    |
@@ -48,20 +48,20 @@ to be transformed into metrics and sent to [Wavefront](https://tanzu.vmware.com/
 
 ## tableauLogin.xml
 
-| Syntax | Description         | Do not change  |
-| --- |------------------------|----------------|
-| name | Tableau username      | ✅        |
-| password | Tableau password  | ✅        |
-| contentUrl   | Tableau URL   | ✅        |
+| Property | Description         | Do not change  |
+|----------------|------------------------|----------------|
+| name           | Tableau username      | ✅        |
+| password       | Tableau password  | ✅        |
+| contentUrl     | Tableau URL   | ✅        |
 
 ## wavefront.properties
 
-| Syntax           | Description                     | Example                   | Required   | Should be changed | Documentation                                                 |
-|------------------|---------------------------------|---------------------------|------------|-------------------|---------------------------------------------------------------|
-| wavefront.token  | Your Wavefront REST Token       |                           | ✅    | ✅           | [here](https://docs.wavefront.com/wavefront_api.html)         |
-| wavefront.url    | Your Wavefront URL              | https://try.wavefront.com | ✅    | ✅           |                                                               |
-| metric.source    | A source name for these metrics | tableauCollectorMetrics   | ✅    | ❌           | [here](https://docs.wavefront.com/sources_managing.html)      |
-| metric.prefix    | A metric name prefix            | tableau.view.data         | ✅    | ❌           | [here](https://docs.wavefront.com/wavefront_data_format.html) |
+| Property  | Description                     | Example                   | Required   | Should be changed | Documentation                                                 |
+|-----------------|---------------------------------|---------------------------|------------|-------------------|---------------------------------------------------------------|
+| wavefront.token | Your Wavefront REST Token       |                           | ✅    | ✅           | [here](https://docs.wavefront.com/wavefront_api.html)         |
+| wavefront.url   | Your Wavefront URL              | https://try.wavefront.com | ✅    | ✅           |                                                               |
+| metric.source   | A source name for these metrics | tableauCollectorMetrics   | ✅    | ❌           | [here](https://docs.wavefront.com/sources_managing.html)      |
+| metric.prefix   | A metric name prefix            | tableau.view.data         | ✅    | ❌           | [here](https://docs.wavefront.com/wavefront_data_format.html) |
 
 # How to run
 
@@ -105,4 +105,9 @@ cd wf-tableau-collector/installers/deb
 dpkg-deb --build --root-owner-group WFTableauCollector-0.1.0_amd64
 ```
 
-This has been built and verified to be working on Ubuntu Server 21.10 on a VirtualBox VM
+## Deb installation test env
+
+| Software      | Version | Notes                                                           |
+|---------------|---------|-----------------------------------------------------------------|
+| Ubuntu Server | 21.10   | NAT Network, port forward from 127.0.0.1:3000 to 10.0.2.15:3000 |
+| VirtualBox  | 6.1.32  | Fresh install, no packages selected                             |
