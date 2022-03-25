@@ -1,7 +1,7 @@
 mkdir -p /usr/local/wftableaucollector/logs
 mkdir -p /usr/local/wftableaucollector/config
 
-cat >/systemd
+cat >/systemd/system/wftableaucollector.service
 [Unit]
 Description=wftableaucollector - collects data from all views in a given workbook with Tableau REST API and publishes them to Tanzu Observability
 Documentation=https://github.com/krisclarkdev/wf-tableau-collector
